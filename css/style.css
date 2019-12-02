@@ -1,17 +1,31 @@
-
 body {
     margin: 0;
+    overflow-y: hidden;
 }
 
 .main-container {
     height: 100vh;
     width: 100vw;
-    background-color: blue;
-    display: flex;
 }
 
 .regular-div {
-    height: 20px;
-    width: 20px;
+    height: 40px;
+    width: 40px;
     border: 1px solid black;
+    box-sizing: border-box;
+    background-color: lightblue;
+    flex-shrink: 0;
 }
+
+.row {
+    display: flex;
+}
+
+.treeLeaf {
+    background-color: green;
+}
+
+.treeTrunk {
+    background-color: brown;
+}
+.regular-div.tree-trunk {}
