@@ -36,3 +36,7 @@ body {
 .ground.lava {
     background-color: orange;
 }
+
+.hill {
+    background-color: blue;
+}
