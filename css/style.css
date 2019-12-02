@@ -22,21 +22,21 @@ body {
 }
 
 .treeLeaf {
-    background-color: green;
+    background-image: url(../img/leaf.png);
 }
 
 .treeTrunk {
-    background-color: brown;
+    background-image: url(../img/tree.png);
 }
 
 .ground {
-    background-color: maroon;
+    background-image: url(../img/ground.png);
 }
 
 .ground.lava {
-    background-color: orange;
+    background-image: url(../img/lava.png);
 }
 
 .hill {
-    background-color: blue;
+    background-image: url(../img/ground.png);
 }
