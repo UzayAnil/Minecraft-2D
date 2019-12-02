@@ -61,10 +61,10 @@
             for (let r = this.groundStartRow; r < this.totalRows; r++) {
                 for (let c = 0; c < this.totalCols; c++) {
                     let groundDiv = document.getElementById(`${r}X${c}`);
-                    groundDiv.classList.add("ground");
                     if (r == (this.totalRows - 1)) {
                         groundDiv.classList.add("lava");
                     }
+                    groundDiv.classList.add("ground");
                 }
             }
         }
@@ -104,6 +104,12 @@
             // 3. "pickaxe"
             // 4. "eraser"
         }
+
+        showMinedTiles() {
+            console.log("not implemented yet")
+            //Need to implement here a way to show the mined tiles save in gameUI.minedTiles object.
+            //The minedTiles object is build in a way of key : value. where key is the class of the mined tile and value is the amount
+        }
     }
 
     class Tile {
@@ -138,6 +144,7 @@
         let minedTile;
         switch (gameUI.currentAction) {
             case "axe":
+
                 break;
             case "shovel":
                 break;
