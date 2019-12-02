@@ -28,4 +28,11 @@ body {
 .treeTrunk {
     background-color: brown;
 }
-.regular-div.tree-trunk {}
+
+.ground {
+    background-color: maroon;
+}
+
+.ground.lava {
+    background-color: orange;
+}
