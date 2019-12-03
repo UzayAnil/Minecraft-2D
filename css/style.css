@@ -1,11 +1,24 @@
 body {
     margin: 0;
     overflow-y: hidden;
+    
 }
 
-.main-container {
-    height: 100vh;
-    width: 100vw;
+
+#main-container {
+    margin-left: 80px;
+}
+#main-container.axe:hover{
+    cursor: url('../img/cursor_axe.png'), auto;
+}
+#main-container.pickaxe:hover{
+    cursor: url('../img/cursor_pickaxe.png'), auto;
+}
+#main-container.eraser:hover{
+    cursor: url('../img/cursor_eraser.png'), auto;
+}
+#main-container.shovel:hover{
+    cursor: url('../img/cursor_shovel.png'), auto;
 }
 
 .regular-div {
@@ -15,6 +28,9 @@ body {
     background-color: lightblue;
     flex-shrink: 0;
     background-size: cover;
+}
+.regular-div:hover{
+    border: 1px solid white;
 }
 
 .regular-div:hover {
@@ -43,4 +59,55 @@ body {
 
 .hill {
     background-image: url(../img/ground.png);
+}
+
+
+#sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    width: 80px;
+    background-color: #313930;
+    background-size: 250px 200vh;
+    background-position: center center;
+    border: 6px lightgray groove;
+    box-sizing: border-box;
+
+}
+#toolbar .tool{
+    width: 68px;
+    height: 70px;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-position: 8px center;
+    position: relative;
+    
+}
+#toolbar .tool.selected{
+    background-color: rgba(255,255,255,0.2);
+}
+
+#toolbar .tool:hover{
+    background-size: 60px; 
+    background-position: 4px center;
+}
+
+
+#toolbar #axe{
+    background-image: url(../img/axe.png);
+}
+
+#toolbar #shovel{
+    background-image: url(../img/shovel.png);
+}
+
+#toolbar #eraser{
+    background-image: url(../img/eraser.png);
+}
+
+#toolbar #pickaxe{
+    background-image: url(../img/pickaxe.png);
 }

@@ -14,7 +14,7 @@
             let rows = Math.floor(height / 40);
 
             this.totalRows = rows;
-            let $mainContainer = $('.main-container');
+            let $mainContainer = $('#main-container');
 
             for (let r = 0; r < rows; r++) {
                 let rowDiv = document.createElement("div");
@@ -152,21 +152,56 @@
     };
 
 
-    gameUI.createToolBar = () => {
+
+    gameUI.createSideBar = () => {
+        
         //TODO - Zohar
         //Need to implement the tool bar with 4 tools here
         //Each one needs an onclick which changes gameUI.currentAction = chosenAction which is one of: 
+        // on click make gameUI.currentTile = null 
         // 1. "axe"
         // 2. "shovel"
         // 3. "pickaxe"
         // 4. "eraser"
+        let sidebar = document.createElement('div');
+        sidebar.setAttribute('id', 'sidebar');       
+        document.body.prepend(sidebar);
+
+        let tools = ["axe", "shovel" , "pickaxe", "eraser"]
+        let toolbar = document.createElement('div');
+        let minedTilesDiv = document.createElement('div');
+        toolbar.setAttribute('id', 'toolbar');
+        minedTilesDiv.setAttribute('id', 'minedTilesDiv');
+        for(let i = 0 ; i<4 ; i++){
+            toolbar.append(document.createElement('div'));
+            toolbar.getElementsByTagName('div')[i].setAttribute('class', 'tool');
+            toolbar.getElementsByTagName('div')[i].setAttribute('id', tools[i]);
+            toolbar.getElementsByTagName('div')[i].addEventListener('click',()=>{
+                gameUI.currentTile = null;
+                gameUI.currentAction = event.target.id;
+                document.getElementById('main-container').className = '';
+                document.getElementById('main-container').classList.add(tools[i]);
+                for (let i = 0 ;i < document.getElementsByClassName('tool').length ; i++){
+                    document.getElementsByClassName('tool')[i].classList.remove('selected')
+                }
+                event.target.classList.add('selected')
+            })
+        };
+
+        document.getElementById('sidebar').append(toolbar);
+        document.getElementById('sidebar').append(minedTilesDiv);
+
+    
     }
 
     gameUI.showMinedTiles = () => {
+        
         //TODO - Zohar
         //Need to implement here a way to show the mined tiles save in gameUI.minedTiles object.
         //The minedTiles object is build in a way of key : value. where key is the class of the mined tile and value is the amount
-        //on click on mined tile - change gameUI.action to tileType
+        //on click on mined tile - change gameUI.action to class of the tile
+        //  on click gameUI.currentAction = null;
+        
     }
 
     function main() {
@@ -178,7 +213,7 @@
         newGameUI.createHills();
         newGameUI.createTree();
         //newGameUI.createRocks();
-        //gameUI.createToolBar();
+        gameUI.createSideBar();
     }
 
     main();
