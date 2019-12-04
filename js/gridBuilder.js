@@ -246,12 +246,6 @@
         }
 
 
-        //TODO - Zohar
-        //Need to implement here a way to show the mined tiles save in gameUI.minedTiles object.
-        //The minedTiles object is build in a way of key : value. where key is the class of the mined tile and value is the amount
-        //on click on mined tile - change gameUI.action to class of the tile
-        //  on click gameUI.currentAction = null;
-
     }
 
     gameUI.updateMinedTiles = () => {
