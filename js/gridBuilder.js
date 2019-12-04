@@ -7,6 +7,7 @@
             this.totalRows = 0;
             this.groundHeight = Math.floor(Math.random() * 3) + 3;
             this.groundStartRow = undefined;
+            this.hillHeight = 2;
         }
 
         buildGrid() {
@@ -111,6 +112,19 @@
                 currentRow++;
             }
         }
+
+        createGrass(){
+            let startRow = this.groundStartRow - this.hillHeight;
+            for (let row = startRow ; row < startRow + this.hillHeight +1 ; row++){
+                for (let col = 0 ; col < this.totalCols ; col++){
+                    let colChecked = document.getElementById(`${row}X${col}`);
+                    if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row , col) == false){
+                            colChecked.classList.add('grass');
+                    };
+                }
+            } 
+            
+        }
     
 
 
@@ -118,6 +132,16 @@
         let below = document.getElementById(`${r + 1}X${c}`);
 
         if (below.classList.contains("hill") || below.classList.contains("ground") || below.classList.contains("rock")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    hasNoGroundOnTop(r, c) {
+        let top = document.getElementById(`${r + -1}X${c}`);
+        console.log(r,c)
+        if (top.classList.contains("hill") || top.classList.contains("ground")) {
             return true;
         } else {
             return false;
@@ -217,6 +241,7 @@ gameUI.createSideBar = () => {
         minedTilesDiv.append(document.createElement('div'));
         minedTilesDiv.getElementsByTagName('div')[i].classList.add('minedTileDiv');
         minedTilesDiv.getElementsByTagName('div')[i].setAttribute('id', tileTypes[i]);
+        
         //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
     }
 
@@ -227,8 +252,14 @@ gameUI.createSideBar = () => {
 
 gameUI.showMinedTiles = () => {
 
+    
 
-
+    let tilesArr = [];
+    tilesArr.push(Object.keys(gameUI.minedTiles));
+    //console.log(tilesArr[0])
+    for (let minedTile of tilesArr[0]){
+        console.log(minedTile)
+    }
 
 
     // for (let tile of Object.keys(gameUI.minedTiles)){
@@ -254,6 +285,7 @@ function main() {
     newGameUI.createHills();
     newGameUI.createTree();
     newGameUI.createRock();
+    newGameUI.createGrass();
     //newGameUI.createRocks();
     gameUI.createSideBar();
 }

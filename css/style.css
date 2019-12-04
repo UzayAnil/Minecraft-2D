@@ -65,6 +65,10 @@ body {
     background-image: url(../img/rock.png);
 }
 
+.grass {
+    background-image: url(../img/grass.png) !important;
+}
+
 
 #sidebar{
     position: fixed;
