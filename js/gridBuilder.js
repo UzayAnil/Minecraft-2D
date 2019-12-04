@@ -7,6 +7,7 @@
             this.totalRows = 0;
             this.groundHeight = Math.floor(Math.random() * 3) + 3;
             this.groundStartRow = undefined;
+            this.hillHeight = 2;
         }
 
         buildGrid() {
@@ -112,6 +113,21 @@
             }
         }
 
+        createGrass(){
+            let startRow = this.groundStartRow - this.hillHeight;
+            for (let row = startRow ; row < startRow + this.hillHeight +1 ; row++){
+                for (let col = 0 ; col < this.totalCols ; col++){
+                    let colChecked = document.getElementById(`${row}X${col}`);
+                    if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row , col) == false){
+                            colChecked.classList.add('grass');
+                    };
+                }
+            } 
+            
+        }
+    
+
+
         hasGroundBelow(r, c) {
             let below = document.getElementById(`${r + 1}X${c}`);
 
@@ -121,6 +137,16 @@
                 return false;
             }
         }
+
+    hasNoGroundOnTop(r, c) {
+        let top = document.getElementById(`${r + -1}X${c}`);
+        console.log(r,c)
+        if (top.classList.contains("hill") || top.classList.contains("ground")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     }
@@ -239,7 +265,7 @@
         newGameUI.createHills();
         newGameUI.createTree();
         newGameUI.createRock();
-        //newGameUI.createRocks();
+        newGameUI.createGrass();
         gameUI.createSideBar();
         gameUI.createMinedTiles();
     }
