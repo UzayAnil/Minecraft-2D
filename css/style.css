@@ -111,3 +111,38 @@ body {
 #toolbar #pickaxe{
     background-image: url(../img/pickaxe.png);
 }
+
+#minedTilesDiv{
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    width: 68px;
+}
+#minedTilesDiv .minedTileDiv{
+    width: 40px;
+    height: 40px;
+    background-color: chocolate;
+    margin: 5px 14px;
+    background-size: cover;
+}
+#minedTilesDiv #lava{
+    background-image: url(../img/lava.png);
+}
+#minedTilesDiv #ground{
+    background-image: url(../img/ground.png);
+}
+#minedTilesDiv #hill{
+    background-image: url(../img/ground.png);
+}
+#minedTilesDiv #grass{
+    background-image: url(../img/grass.png);
+}
+#minedTilesDiv #rock{
+    background-image: url(../img/rock.png);
+}
+#minedTilesDiv #treeLeaf{
+    background-image: url(../img/leaf.png);
+}
+#minedTilesDiv #treeTrunk{
+    background-image: url(../img/tree.png);
+}

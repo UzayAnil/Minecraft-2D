@@ -34,11 +34,11 @@
             let tempRow = this.groundStartRow - 3;
             while (!this.hasGroundBelow(tempRow, treeStartCol + 1)) {
                 tempRow++;
-                console.log(tempRow);
+                //console.log(tempRow);
             }
             let startRow = tempRow - 5;
             let startCol = treeStartCol;
-            console.log("row: " + startRow + " cols: " + startCol)
+            //console.log("row: " + startRow + " cols: " + startCol)
             for (let r = 0; r < 6; r++) {
                 if (r < 3) {
                     for (let c = 0; c < 3; c++) {
@@ -80,7 +80,7 @@
         createHills() {
             let currentRow = 1;
             for (let r = (this.groundStartRow - 1); r > this.groundStartRow - 3; r--) {
-                console.log(r)
+                //console.log(r)
                 for (let c = 0; c < this.totalCols; c++) {
                     let chance = Math.random();
                     if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance > 0.5) {
@@ -133,7 +133,7 @@
 
 
     gameUI.handleAction = (e) => {
-        console.log(gameUI.currentAction + " " + e.target.classList)
+        //console.log(gameUI.currentAction + " " + e.target.classList)
         if (e.target.classList == "regular-div" && gameUI.currentAction == null) {
             console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
@@ -142,10 +142,10 @@
         let minedTile;
         if (gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) {
             minedTile = e.target.getAttribute("tileType");
-            console.log("Mined tile: " + minedTile);            
+            //console.log("Mined tile: " + minedTile);            
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
 
-            console.log(gameUI.minedTiles);
+            
             e.target.classList = "regular-div";
             gameUI.showMinedTiles();
         }        
@@ -187,15 +187,37 @@
                 event.target.classList.add('selected')
             })
         };
-
         document.getElementById('sidebar').append(toolbar);
         document.getElementById('sidebar').append(minedTilesDiv);
+
+        ///////////////////////////// 
+
+        let tileTypes = ['lava', 'ground', 'grass' , 'treeTrunk', 'treeLeaf', 'rock']
+        minedTilesDiv = document.getElementById('minedTilesDiv');
+        for (let i in tileTypes){
+            minedTilesDiv.append(document.createElement('div'));
+            minedTilesDiv.getElementsByTagName('div')[i].classList.add('minedTileDiv');
+            minedTilesDiv.getElementsByTagName('div')[i].setAttribute('id', tileTypes[i]);
+            //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
+        }
+
+        
 
     
     }
 
     gameUI.showMinedTiles = () => {
         
+        
+            
+        
+        
+        // for (let tile of Object.keys(gameUI.minedTiles)){
+
+        //     minedTilesDiv.append(document.createElement('div'));
+        // }
+
+
         //TODO - Zohar
         //Need to implement here a way to show the mined tiles save in gameUI.minedTiles object.
         //The minedTiles object is build in a way of key : value. where key is the class of the mined tile and value is the amount
