@@ -113,19 +113,19 @@
             }
         }
 
-        createGrass(){
+        createGrass() {
             let startRow = this.groundStartRow - this.hillHeight;
-            for (let row = startRow ; row < startRow + this.hillHeight +1 ; row++){
-                for (let col = 0 ; col < this.totalCols ; col++){
+            for (let row = startRow; row < startRow + this.hillHeight + 1; row++) {
+                for (let col = 0; col < this.totalCols; col++) {
                     let colChecked = document.getElementById(`${row}X${col}`);
-                    if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row , col) == false){
-                            colChecked.classList.add('grass');
+                    if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row, col) == false) {
+                        colChecked.classList.add('grass');
                     };
                 }
-            } 
-            
+            }
+
         }
-    
+
 
 
         hasGroundBelow(r, c) {
@@ -138,15 +138,15 @@
             }
         }
 
-    hasNoGroundOnTop(r, c) {
-        let top = document.getElementById(`${r + -1}X${c}`);
-        console.log(r,c)
-        if (top.classList.contains("hill") || top.classList.contains("ground")) {
-            return true;
-        } else {
-            return false;
+        hasNoGroundOnTop(r, c) {
+            let top = document.getElementById(`${r + -1}X${c}`);
+            console.log(r, c)
+            if (top.classList.contains("hill") || top.classList.contains("ground")) {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
 
 
     }
@@ -167,10 +167,12 @@
         }
     }
 
-    let gameUI = {
+    const gameUI = {
         currentAction: null,
         currentTile: null,
         minedTiles: {},
+        tileTypes: ['lava', 'ground', 'grass', 'treeTrunk', 'treeLeaf', 'rock'],
+
     };
 
 
@@ -232,13 +234,13 @@
         minedTilesDiv.setAttribute('id', 'minedTilesDiv');
         document.getElementById('sidebar').append(minedTilesDiv);
 
-        let tileTypes = ['lava', 'ground', 'grass', 'treeTrunk', 'treeLeaf', 'rock'];
         minedTilesDiv = document.getElementById('minedTilesDiv');
-        for (let i in tileTypes) {
+        for (let i in gameUI.tileTypes) {
             let minedDiv = document.createElement('div');
             minedTilesDiv.append(minedDiv);
             minedDiv.classList.add('minedTileDiv');
-            minedDiv.setAttribute('id', tileTypes[i]);
+            minedDiv.classList.add('d-none');
+            minedDiv.setAttribute('id', gameUI.tileTypes[i]);
 
             //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
         }
@@ -253,7 +255,15 @@
     }
 
     gameUI.updateMinedTiles = () => {
-        
+        for (let tileType of gameUI.tileTypes) {
+            let tile = document.getElementById(tileType);
+            if (gameUI.minedTiles[tileType]) {
+                tile.classList.remove("d-none");
+                tile.innerText = gameUI.minedTiles[tileType];
+            } else {
+                tile.classList.add("d-none");
+            }
+        }
     }
 
     function main() {
