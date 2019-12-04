@@ -66,14 +66,14 @@
             for (let r = this.groundStartRow; r < this.totalRows; r++) {
                 for (let c = 0; c < this.totalCols; c++) {
                     let groundDiv = document.getElementById(`${r}X${c}`);
+                    groundDiv.classList.add("ground");
+                    groundDiv.setAttribute("tileType", "ground");
+                    groundDiv.setAttribute("action", "shovel");
                     if (r == (this.totalRows - 1)) {
                         groundDiv.classList.add("lava");
                         groundDiv.setAttribute("tileType", "lava");
                         groundDiv.setAttribute("action", "eraser");
                     }
-                    groundDiv.classList.add("ground");
-                    groundDiv.setAttribute("tileType", "ground");
-                    groundDiv.setAttribute("action", "shovel");
                 }
             }
         }
@@ -87,7 +87,7 @@
                     if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
                         let groundDiv = document.getElementById(`${r}X${c}`);
                         groundDiv.classList.add("hill");
-                        groundDiv.setAttribute("tileType", "hill")
+                        groundDiv.setAttribute("tileType", "ground")
                         groundDiv.setAttribute("action", "shovel")
                     }
 
@@ -120,6 +120,8 @@
                     let colChecked = document.getElementById(`${row}X${col}`);
                     if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row, col) == false) {
                         colChecked.classList.add('grass');
+                        colChecked.setAttribute("tiletype", "grass");
+                        colChecked.classList.remove('ground');
                     };
                 }
             }
