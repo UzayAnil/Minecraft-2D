@@ -61,6 +61,10 @@ body {
     background-image: url(../img/ground.png);
 }
 
+.rock {
+    background-image: url(../img/rock.png);
+}
+
 
 #sidebar{
     position: fixed;
