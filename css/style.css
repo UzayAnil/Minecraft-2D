@@ -154,6 +154,7 @@ body {
     background-color: chocolate;
     margin: 5px 14px;
     background-size: cover;
+    cursor: pointer;
 }
 #minedTilesDiv #lava{
     background-image: url(../img/lava.png);
