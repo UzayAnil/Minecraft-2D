@@ -29,14 +29,14 @@
 
         }
 
-        createCloud(){
+        createCloud() {
             let maxWidth = Math.floor(this.totalCols / 16);
-            let startRow = 3 + Math.floor(Math.random()*6)
-            let startCol = Math.floor(Math.random() * (this.totalCols - maxWidth)) 
+            let startRow = 3 + Math.floor(Math.random() * 6)
+            let startCol = Math.floor(Math.random() * (this.totalCols - maxWidth))
             for (let row = startRow; row < startRow + 2; row++) {
                 for (let col = startCol; col < startCol + maxWidth; col++) {
                     let cloudDiv = document.getElementById(`${row}X${col}`);
-                    if (Math.random() > 0.22){
+                    if (Math.random() > 0.22) {
                         cloudDiv.classList.add('cloud');
                     }
                 }
