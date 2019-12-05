@@ -82,7 +82,7 @@
             for (let r = (this.groundStartRow - 1); r > this.groundStartRow - 3; r--) {
                 //console.log(r)
                 for (let c = 0; c < this.totalCols; c++) {
-                    let chance = Math.random() > 0.5;
+                    let chance = Math.random() > 0.6;
                     if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
                         let groundDiv = document.getElementById(`${r}X${c}`);
                         groundDiv.classList.add("hill");
@@ -105,6 +105,23 @@
                         groundDiv.classList.add("rock");
                         groundDiv.setAttribute("tileType", "rock");
                         groundDiv.setAttribute("action", "pickaxe");
+                    }
+
+                }
+                currentRow++;
+            }
+        }
+
+        createBush() {
+            let currentRow = 1;
+            for (let r = (this.groundStartRow - 1); r > this.groundStartRow - 3; r--) {
+                for (let c = 0; c < this.totalCols; c++) {
+                    let chance = Math.random() > 0.5;
+                    if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
+                        let groundDiv = document.getElementById(`${r}X${c}`);
+                        groundDiv.classList.add("treeLeaf");
+                        groundDiv.setAttribute("tileType", "treeLeaf");
+                        groundDiv.setAttribute("action", "axe");
                     }
 
                 }
@@ -183,6 +200,25 @@
             console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
             e.target.setAttribute("tiletype", gameUI.currentTile);
+            let actionAtt;
+            switch (gameUI.currentTile) {
+                case "treeTrunk":
+                    actionAtt = "axe";
+                    break;
+                case "treeLeaf":
+                    actionAtt = "axe";
+                    break;
+                case "rock":
+                    actionAtt = "pickaxe";
+                    break;
+                case "ground":
+                    actionAtt = "shovel"
+                    break;
+                case "grass":
+                    actionAtt = "shovel"
+                    break;
+            }
+            e.target.setAttribute("action", actionAtt);
             // e.target.setAttribute("action", gameUI.currentTile);
             gameUI.minedTiles[gameUI.currentTile]--;
             gameUI.updateMinedTiles();
@@ -191,8 +227,8 @@
         let minedTile = e.target.getAttribute("tileType");
         if (minedTile == null) {
             return
-        }          
-        
+        }
+
         if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
             //console.log("Mined tile: " + minedTile);  
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
@@ -267,7 +303,7 @@
             if (gameUI.minedTiles[tileType] && gameUI.minedTiles[tileType] != 0) {
                 tile.classList.remove("d-none");
                 tile.innerText = gameUI.minedTiles[tileType];
-            } else if (gameUI.minedTiles[tileType] == 0 && tileType == gameUI.currentTile){
+            } else if (gameUI.minedTiles[tileType] == 0 && tileType == gameUI.currentTile) {
                 console.log("else if")
                 tile.classList.add("d-none");
                 gameUI.currentTile = "null";
@@ -283,7 +319,8 @@
         // console.log(newGameUI.groundStartRow)
         // console.log(newGameUI.totalRows)
         newGameUI.createHills();
-        newGameUI.createTree();    
+        newGameUI.createTree();
+        newGameUI.createBush();
         newGameUI.createRock();
         newGameUI.createGrass();
         gameUI.createSideBar();
