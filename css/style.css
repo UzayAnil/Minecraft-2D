@@ -53,8 +53,8 @@ body {
     background-image: url(../img/ground.png);
 }
 
-.ground.lava {
-    background-image: url(../img/lava.png);
+.lava {
+    background-image: url(../img/lava.png) !important;
 }
 
 .hill {
