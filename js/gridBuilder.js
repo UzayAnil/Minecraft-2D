@@ -29,6 +29,20 @@
 
         }
 
+        createCloud(){
+            let maxWidth = Math.floor(this.totalCols / 16);
+            let startRow = 3 + Math.floor(Math.random()*6)
+            let startCol = Math.floor(Math.random() * (this.totalCols - maxWidth)) 
+            for (let row = startRow; row < startRow + 2; row++) {
+                for (let col = startCol; col < startCol + maxWidth; col++) {
+                    let cloudDiv = document.getElementById(`${row}X${col}`);
+                    if (Math.random() > 0.22){
+                        cloudDiv.classList.add('cloud');
+                    }
+                }
+            }
+        }
+
         createTree() {
             let treeStartCol = Math.floor(Math.random() * (this.totalCols - 3));
             let tempRow = this.groundStartRow - 3;
@@ -316,6 +330,8 @@
         let newGameUI = new GameGrid(100);
         newGameUI.buildGrid();
         newGameUI.createGround();
+        newGameUI.createCloud();
+        newGameUI.createCloud();
         // console.log(newGameUI.groundStartRow)
         // console.log(newGameUI.totalRows)
         newGameUI.createHills();
