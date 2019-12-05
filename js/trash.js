@@ -203,7 +203,25 @@ gameUI.handleAction = (e) => {
     
 };
 
-
+gameUI.falling = (currentTile) =>{
+    let row = currentTile.id.split('X')[0];
+    let col = currentTile.id.split('X')[1];
+    let currentFallingTile  = document.getElementById(`${parseInt(row)-1}X${col}`);
+    let fallingTo = document.getElementById(`${parseInt(row)+1}X${col}`);
+    let gap = document.getElementById(`${row}X${col}`);
+    console.log(fallingTo.getAttribute('tiletype'))
+    if(fallingTo.getAttribute('tiletype') == 'ske'){
+        console.log('falling')
+    }
+    // if(currentFallingTile.classList.contains('ground') || currentFallingTile.classList.contains('rock') || currentFallingTile.classList.contains('treeTrunk') || currentFallingTile.classList.contains('treeLeaf') || currentFallingTile.classList.contains('lava') || currentFallingTile.classList.contains('grass')){
+    //     currentFallingTile.classList.remove('ground');
+    //     gap.classList.add('ground');
+    //     gameUI.falling(currentFallingTile)
+    // }
+    else{
+        
+    }
+}
 
 gameUI.createSideBar = () => {
 
