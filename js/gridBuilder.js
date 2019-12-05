@@ -142,7 +142,7 @@
 
         hasNoGroundOnTop(r, c) {
             let top = document.getElementById(`${r + -1}X${c}`);
-            console.log(r, c)
+            // console.log(r, c)
             if (top.classList.contains("hill") || top.classList.contains("ground")) {
                 return true;
             } else {
@@ -181,18 +181,24 @@
 
     gameUI.handleAction = (e) => {
         //console.log(gameUI.currentAction + " " + e.target.classList)
-        if (e.target.classList == "regular-div" && gameUI.currentAction == null) {
+        if (e.target.classList == "regular-div" && gameUI.currentAction == null && gameUI.currentTile != null) {
             console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
+            e.target.setAttribute("tiletype", gameUI.currentTile)
+            gameUI.minedTiles[gameUI.currentTile]--;
+            gameUI.updateMinedTiles();
             return;
         }
-        let minedTile;
-        if (gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) {
-            minedTile = e.target.getAttribute("tileType");
-            //console.log("Mined tile: " + minedTile);            
+        let minedTile = e.target.getAttribute("tileType");
+        if (minedTile == null) {
+            return
+        }          
+        
+        if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
+            //console.log("Mined tile: " + minedTile);  
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
             console.log(gameUI.minedTiles)
-
+            e.target.removeAttribute("tiletype");
             e.target.classList = "regular-div";
             gameUI.updateMinedTiles();
         }
@@ -243,7 +249,11 @@
             minedDiv.classList.add('minedTileDiv');
             minedDiv.classList.add('d-none');
             minedDiv.setAttribute('id', gameUI.tileTypes[i]);
+            minedDiv.addEventListener("click", function () {
+                gameUI.currentAction = null;
+                gameUI.currentTile = this.id;
 
+            })
             //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
         }
 
@@ -253,11 +263,13 @@
     gameUI.updateMinedTiles = () => {
         for (let tileType of gameUI.tileTypes) {
             let tile = document.getElementById(tileType);
-            if (gameUI.minedTiles[tileType]) {
+            if (gameUI.minedTiles[tileType] && gameUI.minedTiles[tileType] != 0) {
                 tile.classList.remove("d-none");
                 tile.innerText = gameUI.minedTiles[tileType];
-            } else {
+            } else if (gameUI.minedTiles[tileType] == 0 && tileType == gameUI.currentTile){
+                console.log("else if")
                 tile.classList.add("d-none");
+                gameUI.currentTile = "null";
             }
         }
     }
