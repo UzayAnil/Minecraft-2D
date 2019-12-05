@@ -282,11 +282,7 @@
         // console.log(newGameUI.groundStartRow)
         // console.log(newGameUI.totalRows)
         newGameUI.createHills();
-        newGameUI.createTree();
-        newGameUI.createTree();
-        newGameUI.createTree();
-        newGameUI.createTree();
-        newGameUI.createTree();
+        newGameUI.createTree();    
         newGameUI.createRock();
         newGameUI.createGrass();
         gameUI.createSideBar();
