@@ -251,6 +251,8 @@
             minedDiv.addEventListener("click", function () {
                 gameUI.currentAction = null;
                 gameUI.currentTile = this.id;
+                document.getElementById("main-container").className = this.id;
+
                 console.log(this.id)
             })
             //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
