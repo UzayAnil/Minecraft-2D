@@ -184,7 +184,8 @@
         if (e.target.classList == "regular-div" && gameUI.currentAction == null && gameUI.currentTile != null) {
             console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
-            e.target.setAttribute("tiletype", gameUI.currentTile)
+            e.target.setAttribute("tiletype", gameUI.currentTile);
+            // e.target.setAttribute("action", gameUI.currentTile);
             gameUI.minedTiles[gameUI.currentTile]--;
             gameUI.updateMinedTiles();
             return;
@@ -194,7 +195,7 @@
             return
         }          
         
-        if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
+        if ((gameUI.currentAction == "eraser" || e.target.getAttribute("tiletype") == gameUI.currentAction) && gameUI.currentAction != null) {
             //console.log("Mined tile: " + minedTile);  
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
             console.log(gameUI.minedTiles)
@@ -252,7 +253,7 @@
             minedDiv.addEventListener("click", function () {
                 gameUI.currentAction = null;
                 gameUI.currentTile = this.id;
-
+                console.log(this.id)
             })
             //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
         }
@@ -275,12 +276,16 @@
     }
 
     function main() {
-        let newGameUI = new GameGrid(40);
+        let newGameUI = new GameGrid(100);
         newGameUI.buildGrid();
         newGameUI.createGround();
         // console.log(newGameUI.groundStartRow)
         // console.log(newGameUI.totalRows)
         newGameUI.createHills();
+        newGameUI.createTree();
+        newGameUI.createTree();
+        newGameUI.createTree();
+        newGameUI.createTree();
         newGameUI.createTree();
         newGameUI.createRock();
         newGameUI.createGrass();
