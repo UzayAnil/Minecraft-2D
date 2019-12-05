@@ -21,6 +21,26 @@ body {
     cursor: url('../img/cursor_shovel.png'), auto;
 }
 
+#main-container.grass:hover{
+    cursor: url('../img/cursor_grass.png'), auto;
+}
+#main-container.ground:hover{
+    cursor: url('../img/cursor_ground.png'), auto;
+}
+#main-container.lava:hover{
+    cursor: url('../img/cursor_lava.png'), auto;
+}
+#main-container.treeTrunk:hover{
+    cursor: url('../img/cursor_treeTrunk.png'), auto;
+}
+#main-container.treeLeaf:hover{
+    cursor: url('../img/cursor_treeLeaf.png'), auto;
+}
+#main-container.rock:hover{
+    cursor: url('../img/cursor_rock.png'), auto;
+}
+
+
 .regular-div {
     height: 40px;
     width: 40px;
