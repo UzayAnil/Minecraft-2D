@@ -23,7 +23,6 @@
                 for (let c = 0; c < this.totalCols; c++) {
                     let col = new Tile(r, c);
                     rowDiv.appendChild(col.getDiv());
-                    col.bind
                 }
                 $mainContainer.append($(rowDiv));
             }
@@ -142,7 +141,6 @@
 
         hasNoGroundOnTop(r, c) {
             let top = document.getElementById(`${r + -1}X${c}`);
-            // console.log(r, c)
             if (top.classList.contains("hill") || top.classList.contains("ground")) {
                 return true;
             } else {
