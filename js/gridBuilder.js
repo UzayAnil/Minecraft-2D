@@ -193,7 +193,7 @@
             return
         }          
         
-        if ((gameUI.currentAction == "eraser" || e.target.getAttribute("tiletype") == gameUI.currentAction) && gameUI.currentAction != null) {
+        if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
             //console.log("Mined tile: " + minedTile);  
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
             console.log(gameUI.minedTiles)
@@ -271,6 +271,7 @@
                 console.log("else if")
                 tile.classList.add("d-none");
                 gameUI.currentTile = "null";
+                document.getElementById("main-container").className = "";
             }
         }
     }
