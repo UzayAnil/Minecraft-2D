@@ -8,6 +8,15 @@
             this.groundHeight = Math.floor(Math.random() * 3) + 3;
             this.groundStartRow = undefined;
             this.hillHeight = 2;
+            this.buildGrid();
+            this.createGround();
+            this.createCloud();
+            this.createCloud();
+            this.createHills();
+            this.createTree();
+            this.createBush();
+            this.createRock();
+            this.createGrass();
         }
 
         buildGrid() {
@@ -202,7 +211,7 @@
         currentTile: null,
         minedTiles: {},
         tileTypes: ['lava', 'ground', 'grass', 'treeTrunk', 'treeLeaf', 'rock'],
-
+        gameGrid: undefined,
     };
 
 
@@ -324,39 +333,25 @@
             }
         }
     }
-    let modalFunctions = () =>{
+
+    gameUI.modalFunctions = () => {
         let splash = document.getElementById('splash');
         let btnsArr = splash.getElementsByClassName('btn');
-        for(let btn of btnsArr){
-            btn.addEventListener('click', function(){
-                newGameUI = new GameGrid(this.value);
-                splash.style.display = 'none'
-                main();
+        for (let btn of btnsArr) {
+            btn.addEventListener('click', function () {
+                gameUI.gameGrid = new GameGrid(this.value);
+                splash.style.display = 'none'                
+                gameUI.createSideBar();
+                gameUI.createMinedTiles();
             })
         }
-
-        
-       
     }
-    let newGameUI
-    function main() {
-        newGameUI.buildGrid();
-        newGameUI.createGround();
-        newGameUI.createCloud();
-        newGameUI.createCloud();
-        // console.log(newGameUI.groundStartRow)
-        // console.log(newGameUI.totalRows)
-        newGameUI.createHills();
-        newGameUI.createTree();
-        newGameUI.createBush();
-        newGameUI.createRock();
-        newGameUI.createGrass();
-        gameUI.createSideBar();
-        gameUI.createMinedTiles();
-        
-    }
-
     
-    modalFunctions();
-   
+    function main() {   
+        gameUI.modalFunctions();
+
+    }
+
+main();
+
 })(window)
