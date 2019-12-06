@@ -7,6 +7,7 @@
   background-image: url(../img/opening.png);
   background-size: cover;
   z-index: 2;
+  background-position: center;
 }
 
 #splash #modal {
