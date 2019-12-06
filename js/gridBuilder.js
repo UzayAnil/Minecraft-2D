@@ -31,7 +31,7 @@
 
         createCloud() {
             let maxWidth = Math.floor(this.totalCols / 16);
-            let startRow = 3 + Math.floor(Math.random() * 6)
+            let startRow = 3 + Math.floor(Math.random() * 4)
             let startCol = Math.floor(Math.random() * (this.totalCols - maxWidth))
             for (let row = startRow; row < startRow + 2; row++) {
                 for (let col = startCol; col < startCol + maxWidth; col++) {
@@ -131,8 +131,8 @@
             for (let r = (this.groundStartRow - 1); r > this.groundStartRow - 3; r--) {
                 for (let c = 0; c < this.totalCols; c++) {
                     let chance = Math.random() > 0.5;
-                    if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
-                        let groundDiv = document.getElementById(`${r}X${c}`);
+                    let groundDiv = document.getElementById(`${r}X${c}`);
+                    if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance && groundDiv.className == "regular-div") {
                         groundDiv.classList.add("treeLeaf");
                         groundDiv.setAttribute("tileType", "treeLeaf");
                         groundDiv.setAttribute("action", "axe");
