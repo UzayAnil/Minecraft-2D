@@ -324,9 +324,22 @@
             }
         }
     }
+    let modalFunctions = () =>{
+        let splash = document.getElementById('splash');
+        let btnsArr = splash.getElementsByClassName('btn');
+        for(let btn of btnsArr){
+            btn.addEventListener('click', function(){
+                newGameUI = new GameGrid(this.value);
+                splash.style.display = 'none'
+                main();
+            })
+        }
 
+        
+       
+    }
+    let newGameUI
     function main() {
-        let newGameUI = new GameGrid(100);
         newGameUI.buildGrid();
         newGameUI.createGround();
         newGameUI.createCloud();
@@ -340,7 +353,10 @@
         newGameUI.createGrass();
         gameUI.createSideBar();
         gameUI.createMinedTiles();
+        
     }
 
-    main();
+    
+    modalFunctions();
+   
 })(window)
