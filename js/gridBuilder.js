@@ -99,7 +99,7 @@
                     let chance = Math.random() > 0.6;
                     if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
                         let groundDiv = document.getElementById(`${r}X${c}`);
-                        groundDiv.classList.add("hill");
+                        groundDiv.classList.add("ground");
                         groundDiv.setAttribute("tileType", "ground")
                         groundDiv.setAttribute("action", "shovel")
                     }
@@ -148,7 +148,7 @@
             for (let row = startRow; row < startRow + this.hillHeight + 1; row++) {
                 for (let col = 0; col < this.totalCols; col++) {
                     let colChecked = document.getElementById(`${row}X${col}`);
-                    if ((colChecked.getAttribute('tiletype') == 'hill' || colChecked.getAttribute('tiletype') == 'ground') && this.hasNoGroundOnTop(row, col) == false) {
+                    if (colChecked.getAttribute('tiletype') == 'ground' && !this.hasGroundOnTop(row, col)) {
                         colChecked.classList.add('grass');
                         colChecked.setAttribute("tiletype", "grass");
                         colChecked.classList.remove('ground');
@@ -158,25 +158,24 @@
 
         }
 
-
-
         hasGroundBelow(r, c) {
             let below = document.getElementById(`${r + 1}X${c}`);
-
-            if (below.classList.contains("hill") || below.classList.contains("ground") || below.classList.contains("rock")) {
-                return true;
-            } else {
-                return false;
-            }
+            return (below.classList.contains("ground") || below.classList.contains("grass") || below.classList.contains("rock"))
+            // if  {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
         }
 
-        hasNoGroundOnTop(r, c) {
+        hasGroundOnTop(r, c) {
             let top = document.getElementById(`${r + -1}X${c}`);
-            if (top.classList.contains("hill") || top.classList.contains("ground")) {
-                return true;
-            } else {
-                return false;
-            }
+            return (top.classList.contains("ground") || top.classList.contains("grass"));
+            // if (top.classList.contains("ground")) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
         }
 
 
