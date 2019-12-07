@@ -276,6 +276,10 @@
                     document.getElementsByClassName('tool')[i].classList.remove('selected')
                 }
                 event.target.classList.add('selected');
+                let minedTiles = document.getElementsByClassName('minedTileDiv');
+                for (let i = 0; i < minedTiles.length; i++) {
+                    minedTiles[i].classList.remove('selected')
+                }
             })
         };
         document.getElementById('sidebar').append(toolbar);
@@ -299,6 +303,14 @@
                 gameUI.currentAction = null;
                 gameUI.currentTile = this.id;
                 document.getElementById("main-container").className = this.id;
+                let minedTiles = document.getElementsByClassName('minedTileDiv');
+                for (let i = 0; i < minedTiles.length; i++) {
+                    minedTiles[i].classList.remove('selected')
+                }
+                for (let i = 0; i < document.getElementsByClassName('tool').length; i++) {
+                    document.getElementsByClassName('tool')[i].classList.remove('selected')
+                }
+                event.target.classList.add('selected')
 
             })
         }
