@@ -240,7 +240,6 @@
         }
 
         if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
-            //console.log("Mined tile: " + minedTile);  
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
             console.log(gameUI.minedTiles)
             e.target.removeAttribute("tiletype");
@@ -305,7 +304,6 @@
 
                 console.log(this.id)
             })
-            //minedTilesDiv.getElementsByTagName('div')[i].append(document.createElement('div'))
         }
 
 
