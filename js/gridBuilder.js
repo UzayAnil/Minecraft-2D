@@ -60,11 +60,9 @@
             let tempRow = this.groundStartRow - 3;
             while (!this.hasGroundBelow(tempRow, treeStartCol + 1)) {
                 tempRow++;
-                //console.log(tempRow);
             }
             let startRow = tempRow - 5;
             let startCol = treeStartCol;
-            //console.log("row: " + startRow + " cols: " + startCol)
             for (let r = 0; r < 6; r++) {
                 if (r < 3) {
                     for (let c = 0; c < 3; c++) {
@@ -106,7 +104,6 @@
         createHills() {
             let currentRow = 1;
             for (let r = (this.groundStartRow - 1); r > this.groundStartRow - 3; r--) {
-                //console.log(r)
                 for (let c = 0; c < this.totalCols; c++) {
                     let chance = Math.random() > 0.6;
                     if ((currentRow == 1 || this.hasGroundBelow(r, c)) && chance) {
@@ -173,21 +170,11 @@
         hasGroundBelow(r, c) {
             let below = document.getElementById(`${r + 1}X${c}`);
             return (below.classList.contains("ground") || below.classList.contains("grass") || below.classList.contains("rock"))
-            // if  {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
         }
 
         hasGroundOnTop(r, c) {
             let top = document.getElementById(`${r + -1}X${c}`);
             return (top.classList.contains("ground") || top.classList.contains("grass"));
-            // if (top.classList.contains("ground")) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
         }
 
 
@@ -291,8 +278,6 @@
         };
         document.getElementById('sidebar').append(toolbar);
 
-        ///////////////////////////// 
-
     }
 
     gameUI.createMinedTiles = () => {
@@ -348,22 +333,22 @@
             })
         }
     }
-    
+
     gameUI.restart = () => {
         let resetBtn = document.getElementById("reset");
-        resetBtn.addEventListener("click", function() {
+        resetBtn.addEventListener("click", function () {
             $('#main-container').empty();
             $('#sidebar').remove();
-            let splash = document.getElementById('splash');        
+            let splash = document.getElementById('splash');
             splash.style.display = 'block';
         });
     }
 
-    function main() {   
+    function main() {
         gameUI.modalFunctions();
         gameUI.restart();
     }
 
-main();
+    main();
 
 })(window)
