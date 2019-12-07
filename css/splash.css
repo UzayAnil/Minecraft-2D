@@ -24,7 +24,7 @@
 }
 
 #splash #modal img {
-  max-width: 100%;
+  max-width: 80%;
   margin-bottom: 20px;
 }
 
@@ -79,7 +79,7 @@
   background-color: red;
 }
 
-#reset {
+#resetBg {
   background-color: #313930;
   border: 6px lightgray groove;
   width: 60px;
@@ -91,18 +91,18 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   z-index: 1;
-  cursor: pointer;
 }
 
-#reset:hover img {
+#resetBg #reset {
+  cursor: pointer;
+  width: 35px;
+  opacity: .8;
+}
+
+#resetBg #reset:hover {
   width: 40px;
   opacity: .8;
   margin-top: -3px;
   margin-left: 2px;
-}
-
-#reset img {
-  width: 35px;
-  opacity: .8;
 }
 /*# sourceMappingURL=splash.css.map */

@@ -17,7 +17,7 @@
             padding: 10px;
         }
         img{
-            max-width: 100%;
+            max-width: 80%;
             margin-bottom: 20px;
         }
         #buttons{
@@ -55,8 +55,7 @@
         
     }
 }
-
-#reset{
+#resetBg{
     background-color: #313930;
     border: 6px lightgray groove;
     width: 60px;
@@ -67,20 +66,19 @@
     text-align: center;
     box-sizing: border-box;
     z-index: 1;
-    cursor: pointer;
-    &:hover{
-        img{
+    #reset{
+        cursor: pointer;
+        width: 35px;
+        opacity: .8;
+        &:hover{
             width: 40px;
             opacity: .8;
             margin-top: -3px;
             margin-left: 2px;
         }
     }
-    img{
-        width: 35px;
-        opacity: .8;
-    }
 }
+
 // .minedTileDiv{
 //     background-color: rgba($color: #fff, $alpha: .2);
 // }
