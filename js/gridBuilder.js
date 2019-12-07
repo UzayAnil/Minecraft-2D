@@ -349,7 +349,7 @@
     gameUI.restart = () => {
         let resetBtn = document.getElementById("reset");
         resetBtn.addEventListener("click", function() {
-            $('main-container').empty();
+            $('#main-container').empty();
             let splash = document.getElementById('splash');        
             splash.style.display = 'block';
         });
