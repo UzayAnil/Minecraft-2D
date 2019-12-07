@@ -336,6 +336,7 @@
     gameUI.restart = () => {
         let resetBtn = document.getElementById("reset");
         resetBtn.addEventListener("click", function () {
+            gameUI.minedTiles = {};
             $('#main-container').empty();
             $('#sidebar').remove();
             let splash = document.getElementById('splash');
