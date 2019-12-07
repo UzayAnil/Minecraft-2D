@@ -206,7 +206,6 @@
 
 
     gameUI.handleAction = (e) => {
-        //console.log(gameUI.currentAction + " " + e.target.classList)
         if (e.target.classList == "regular-div" && gameUI.currentAction == null && gameUI.currentTile != null) {
             console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
@@ -230,13 +229,13 @@
                     break;
             }
             e.target.setAttribute("action", actionAtt);
-            // e.target.setAttribute("action", gameUI.currentTile);
             gameUI.minedTiles[gameUI.currentTile]--;
             gameUI.updateMinedTiles();
             return;
         }
         let minedTile = e.target.getAttribute("tileType");
         if (minedTile == null) {
+            gameUI.bzzz(e);
             return
         }
 
@@ -247,10 +246,16 @@
             e.target.removeAttribute("tiletype");
             e.target.classList = "regular-div";
             gameUI.updateMinedTiles();
+        } else {
+            gameUI.bzzz(e);
+            return
         }
     };
 
-
+    gameUI.bzzz = (e) => {
+        e.target.classList.add("bzzz");
+        setTimeout(() => { e.target.classList.remove("bzzz") }, 500);
+    }
 
     gameUI.createSideBar = () => {
 
