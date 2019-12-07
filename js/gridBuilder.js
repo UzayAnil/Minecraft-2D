@@ -207,7 +207,6 @@
 
     gameUI.handleAction = (e) => {
         if (e.target.classList == "regular-div" && gameUI.currentAction == null && gameUI.currentTile != null) {
-            console.log("Nothing in this div but sky");
             e.target.classList.add(gameUI.currentTile);
             e.target.setAttribute("tiletype", gameUI.currentTile);
             let actionAtt;
@@ -241,7 +240,6 @@
 
         if ((gameUI.currentAction == "eraser" || e.target.getAttribute("action") == gameUI.currentAction) && gameUI.currentAction != null) {
             gameUI.minedTiles[minedTile] ? gameUI.minedTiles[minedTile]++ : gameUI.minedTiles[minedTile] = 1;
-            console.log(gameUI.minedTiles)
             e.target.removeAttribute("tiletype");
             e.target.classList = "regular-div";
             gameUI.updateMinedTiles();
@@ -302,7 +300,6 @@
                 gameUI.currentTile = this.id;
                 document.getElementById("main-container").className = this.id;
 
-                console.log(this.id)
             })
         }
 
@@ -316,7 +313,6 @@
                 tile.classList.remove("d-none");
                 tile.innerText = gameUI.minedTiles[tileType];
             } else if (gameUI.minedTiles[tileType] == 0 && tileType == gameUI.currentTile) {
-                console.log("else if")
                 tile.classList.add("d-none");
                 gameUI.currentTile = "null";
                 document.getElementById("main-container").className = "";
