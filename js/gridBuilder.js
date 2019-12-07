@@ -12,7 +12,10 @@
             this.createGround();
             this.createCloud();
             this.createCloud();
+            this.createCloud();
             this.createHills();
+            this.createTree();
+            this.createTree();
             this.createTree();
             this.createBush();
             this.createRock();
@@ -350,6 +353,7 @@
         let resetBtn = document.getElementById("reset");
         resetBtn.addEventListener("click", function() {
             $('#main-container').empty();
+            $('#sidebar').remove();
             let splash = document.getElementById('splash');        
             splash.style.display = 'block';
         });
