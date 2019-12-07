@@ -215,7 +215,6 @@
     };
 
 
-
     gameUI.handleAction = (e) => {
         //console.log(gameUI.currentAction + " " + e.target.classList)
         if (e.target.classList == "regular-div" && gameUI.currentAction == null && gameUI.currentTile != null) {
@@ -340,16 +339,25 @@
         for (let btn of btnsArr) {
             btn.addEventListener('click', function () {
                 gameUI.gameGrid = new GameGrid(this.value);
-                splash.style.display = 'none'                
+                splash.style.display = 'none';
                 gameUI.createSideBar();
                 gameUI.createMinedTiles();
             })
         }
     }
     
+    gameUI.restart = () => {
+        let resetBtn = document.getElementById("reset");
+        resetBtn.addEventListener("click", function() {
+            $('main-container').empty();
+            let splash = document.getElementById('splash');        
+            splash.style.display = 'block';
+        });
+    }
+
     function main() {   
         gameUI.modalFunctions();
-
+        gameUI.restart();
     }
 
 main();
